@@ -1,5 +1,8 @@
 {
   "name": "ci-playground",
   "version": "0.0.1",
-  "author": "ck"
+  "author": "ck",
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
 }
