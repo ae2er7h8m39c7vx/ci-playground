@@ -4,10 +4,8 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  schedule:
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
@@ -31,7 +29,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: node index.js
+      - run: tail -n 20 data | node index.js
       - name: Git Commit
         run: |
           git config user.name 'Bot'

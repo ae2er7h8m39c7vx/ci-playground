@@ -4,5 +4,8 @@
   "author": "ck",
   "devDependencies": {
     "dotenv": "^16.3.1"
+  },
+  "dependencies": {
+    "xml2js": "^0.6.2"
   }
 }
