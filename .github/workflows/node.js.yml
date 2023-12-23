@@ -35,5 +35,4 @@ jobs:
           git config user.name 'Bot'
           git config user.email ck@github.com
           git add .
-          git commit -m "Beep Boop"
-          git push
+          (git commit -m "Beep Boop" && git push) || true
