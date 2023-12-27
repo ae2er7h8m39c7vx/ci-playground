@@ -10,13 +10,15 @@
     input = new Set(input.map((line) => line.link))
 
     let res
-    res = await fetch("http://rss.lowyat.net/forum/154")
+    // res = await fetch("http://rss.lowyat.net/forum/154")
+    res = await fetch("http://rss.lowyat.net/topic/2852676")
     res = await res.text()
     res = await util.promisify(parseString)(res)
     res = res.rss.channel[0].item
     res = res.map(each => Object.fromEntries(Object.entries(each).map(([key, val]) => [key, val[0]])))
     res = res.reverse()
     res = res.filter((each) => !input.has(each.link))
+    res = res.map((each) => ({ ...each, description: cleanDescription(each.description) }))
 
     if (res.length) {
         for (const { title, link } of res) await sendWebhook(title + " " + link)
@@ -42,4 +44,12 @@ async function sendWebhook(content) {
             body: JSON.stringify({ content })
         }
     )
+}
+
+/**
+ *
+ * @param {string} description
+ */
+function cleanDescription(description) {
+    return description.replace(/<!--.+-->/g, "").replace(/<br \/>/g, '\n')
 }
