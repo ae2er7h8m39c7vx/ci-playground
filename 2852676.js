@@ -21,8 +21,8 @@
     res = res.map((each) => ({ ...each, description: cleanDescription(each.description) }))
 
     if (res.length) {
-        for (const { title, link } of res) await sendWebhook(title + " " + link)
-        await util.promisify(fs.appendFile)('data', res.map((line) => JSON.stringify(line)).join('\n') + '\n')
+        for (const { description, link } of res) await sendWebhook(description + " " + link)
+        await util.promisify(fs.appendFile)('2852676', res.map((line) => JSON.stringify(line)).join('\n') + '\n')
     }
 
     process.exit(0)

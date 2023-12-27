@@ -29,7 +29,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: tail -n 20 data | node index.js
+      - run: tail -n 20 154 | node 154.js
+      - run: tail -n 20 2852676 | node 2852676.js
       - name: Git Commit
         run: |
           git config user.name 'Bot'
