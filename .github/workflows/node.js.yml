@@ -38,3 +38,4 @@ jobs:
           git config user.email ck@github.com
           git add .
           (git commit -m "Beep Boop" && git push) || true
+      - run: node lol-schedule.js
